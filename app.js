@@ -12,8 +12,10 @@ const App = {
       this.inputValue = event.target.value;
     },
     addNote() {
-      this.notes.push(this.inputValue)
-      this.inputValue = ''
+      if (this.inputValue !== '') {
+        this.notes.push(this.inputValue)
+        this.inputValue = ''
+      }
     },
     removeNote(idx) {
       this.notes.splice(idx, 1)
