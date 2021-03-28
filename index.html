@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="theme.css" />
+    <title>Vue app</title>
+  </head>
+  <body>
+    <div class="container pt-5" id="app">
+      <div class="card">
+        <h1>{{ title }}</h1>
+        <div class="form-control">
+            <input type="text" v-bind:placeholder="placeholderString" v-bind:value="inputValue"
+              v-on:input="inputChangeHandler"  
+              v-on:keypress.enter="addNote"
+            />
+        </div>
+        <button class="btn" v-on:click="addNote">Добавить</button>
+        <hr>
+        <ul class="list">
+          <li class="list-item" v-for="(note, idx) in notes">
+            {{ note }}
+            <button class="btn danger" v-on:click="removeNote(idx)">Удалить</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
