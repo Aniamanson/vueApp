@@ -11,20 +11,34 @@
       <div class="card">
         <h1>{{ title }}</h1>
         <div class="form-control">
-            <input type="text" v-bind:placeholder="placeholderString" v-bind:value="inputValue"
-              v-on:input="inputChangeHandler"  
-              v-on:keypress.enter="addNote"
+            <input type="text" :placeholder="placeholderString" 
+              v-model="inputValue"  
+              @keypress.enter="addNote"
             />
         </div>
-        <button class="btn" v-on:click="addNote">Добавить</button>
+        <button class="btn" @click="addNote">Добавить</button>
         <hr>
         <ul class="list" v-if="notes.length !== 0">
           <li class="list-item" v-for="(note, idx) in notes">
-            <b>{{ idx + 1 }}. {{ note }}</b> 
-            <button class="btn danger" v-on:click="removeNote(idx)">Удалить</button>
+            <label>
+              <input type="checkbox" class="checkbox" name="check" @click="doneNote(idx)">
+              <span class="text">{{ note }}</span>
+            </label>
+            <button class="btn danger" @click="removeNote(idx)">Удалить</button>
           </li>
         </ul>
         <div v-if="notes.length === 0">Список покупок пуст. Добавьте новые покупки</div>
+        <hr>
+        <div><strong>Вы покупали ранее: {{ buyLast.length }}</strong></div>
+        <ul class="list" v-if="doneNote.length !== 0">
+          <li class="list-item" v-for="(item, idx) in buyLast">
+            <label>
+              <input type="checkbox" class="checkbox checkbox-done" name="check" @click="returnNote(idx)" checked>
+              <span class="done text">{{ item }}</span>
+            </label>
+          </li>
+        </ul>
+        <div v-if="doneNote.length === 0">У вас нет ранее сделанных покупок</div>
       </div>
     </div>
 

@@ -5,6 +5,7 @@ const App = {
       title: "Список покупок",
       inputValue: '',
       notes: [],
+      buyLast: [],
     };
   },
   methods: {
@@ -19,6 +20,12 @@ const App = {
     },
     removeNote(idx) {
       this.notes.splice(idx, 1)
+    },
+    doneNote(idx) {
+      this.buyLast.push(this.notes.splice(idx, 1)[0])
+    },
+    returnNote(idx) {
+      this.notes.push(this.buyLast.splice(idx, 1)[0])
     }
   }
 };
