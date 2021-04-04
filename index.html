@@ -29,16 +29,18 @@
         </ul>
         <div v-if="notes.length === 0">Список покупок пуст. Добавьте новые покупки</div>
         <hr>
-        <div><strong>Вы покупали ранее: {{ buyLast.length }}</strong></div>
-        <ul class="list" v-if="doneNote.length !== 0">
-          <li class="list-item" v-for="(item, idx) in buyLast">
-            <label>
-              <input type="checkbox" class="checkbox checkbox-done" name="check" @click="returnNote(idx)" checked>
-              <span class="done text">{{ item }}</span>
-            </label>
-          </li>
-        </ul>
-        <div v-if="doneNote.length === 0">У вас нет ранее сделанных покупок</div>
+        <div v-if="buyLast.length !== 0">
+          <strong>Вы покупали ранее: {{ buyLast.length }}</strong>
+          <ul class="list">
+            <li class="list-item" v-for="(item, idx) in buyLast">
+              <label>
+                <input type="checkbox" class="checkbox checkbox-done" name="check" @click="returnNote(idx)" checked>
+                <span class="done text">{{ item }}</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <div v-if="buyLast.length === 0">У вас нет ранее сделанных покупок</div>
       </div>
     </div>
 
